@@ -1,23 +1,26 @@
-const ROCK = 1;
-const PAPER = 2;
-const SCISSORS = 3;
-const ROCK_STRING = "rock";
-const PAPER_STRING = "paper";
-const SCISSORS_STRING = "scissors";
+const ROCK_PAPER_SCISSORS = ["rock", "paper", "scissors"];
+const ROCK_INDEX = 0;
+const PAPER_INDEX = 1;
+const SCISSORS_INDEX = 2;
 
 function getComputerChoice() {
-  const choice = getRandomInt(ROCK, SCISSORS);
+  const choiceIndex = getRandomInt(ROCK_INDEX, SCISSORS_INDEX);
 
-  switch (choice) {
-    case ROCK:
-      return ROCK_STRING;
-    case PAPER:
-      return PAPER_STRING;
-    case SCISSORS:
-      return SCISSORS_STRING;
-  }
+  return ROCK_PAPER_SCISSORS[choiceIndex];
 }
 
 function getRandomInt(from, through) {
   return Math.floor(Math.random() * through + from);
+}
+
+function getHumanChoice() {
+  let humanChoice = prompt(`Enter "rock", "paper", or "scissors":`);
+
+  while (!ROCK_PAPER_SCISSORS.includes(humanChoice) && humanChoice !== null) {
+    humanChoice = prompt(
+      'Invalid choice, enter "rock", "paper", or "scissors":'
+    );
+  }
+
+  return humanChoice;
 }
